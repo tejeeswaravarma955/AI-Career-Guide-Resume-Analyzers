@@ -1,0 +1,31 @@
+{
+  "roles": {
+    "Python Developer": {
+      "questions": [
+        "What is a variable in Python?",
+        "Explain the difference between a list and a tuple.",
+        "What is a dictionary and how is it used?",
+        "How do you handle exceptions in Python?",
+        "What is the difference between a function and a method?"
+      ]
+    },
+    "Java Developer": {
+      "questions": [
+        "What is the difference between JDK and JRE?",
+        "What is the purpose of OOP?",
+        "Explain inheritance in Java.",
+        "What is a HashMap in Java?",
+        "How do you handle exceptions in Java?"
+      ]
+    },
+    "Web Developer": {
+      "questions": [
+        "What is the DOM?",
+        "How do CSS selectors work?",
+        "What is the difference between GET and POST?",
+        "How do you make a website responsive?",
+        "What is event bubbling in JavaScript?"
+      ]
+    }
+  }
+}

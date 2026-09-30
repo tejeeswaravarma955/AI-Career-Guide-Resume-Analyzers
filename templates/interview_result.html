@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Interview Result{% endblock %}
+
+{% block content %}
+<section class="container page-section">
+    <div class="page-header">
+        <span class="badge badge-dark">Interview Performance</span>
+        <h1>{{ role }}</h1>
+    </div>
+
+    <div class="score-layout">
+        <div class="score-card big-score">
+            <span>Overall Score</span>
+            <h2>{{ result.overall_score }}%</h2>
+        </div>
+        <div class="score-card">
+            <p>Interview Readiness Estimate: {{ result.overall_score }}%</p>
+            <p class="muted">Based on your answers, your current performance is above the configured 65% practice benchmark. This is a practice assessment and cannot guarantee an actual job offer.</p>
+        </div>
+    </div>
+
+    <div class="score-grid compact-grid">
+        {% for label, value in [('Technical Knowledge', result.technical_knowledge), ('Communication', result.communication), ('Problem Solving', result.problem_solving), ('Role Knowledge', result.role_knowledge)] %}
+        <div class="score-item">
+            <div class="score-row"><span>{{ label }}</span><strong>{{ value }}%</strong></div>
+            <div class="progress-bar"><span style="width: {{ value }}%"></span></div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="split-layout">
+        <div class="result-card">
+            <h3>Strengths</h3>
+            <ul class="check-list">
+                {% for item in result.strengths %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="result-card">
+            <h3>Areas to Improve</h3>
+            <ul class="check-list danger-list">
+                {% for item in result.areas_to_improve %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="result-card">
+        <h3>Recommended Topics</h3>
+        <ul class="tag-list">
+            {% for topic in result.recommended_topics %}
+            <li>{{ topic }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

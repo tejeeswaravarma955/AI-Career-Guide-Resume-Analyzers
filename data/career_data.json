@@ -1,0 +1,30 @@
+{
+  "roles": [
+    "Python Developer",
+    "Java Developer",
+    "Web Developer",
+    "Data Analyst",
+    "Data Scientist",
+    "AI/ML Engineer",
+    "Frontend Developer",
+    "Backend Developer",
+    "Full Stack Developer"
+  ],
+  "portfolio": {
+    "Python Developer": {
+      "skills": ["Python", "Flask", "Django", "REST APIs", "SQL", "Git", "OOP"],
+      "certifications": ["Python", "SQL", "Cloud", "Git"],
+      "keywords": ["Python", "Flask", "REST API", "SQL", "Git", "problem solving"]
+    },
+    "Web Developer": {
+      "skills": ["HTML", "CSS", "JavaScript", "Responsive Design", "Bootstrap", "Git"],
+      "certifications": ["Web Development", "JavaScript", "UI/UX", "Git"],
+      "keywords": ["HTML", "CSS", "JavaScript", "responsive design", "accessibility", "cross-browser"]
+    },
+    "Data Analyst": {
+      "skills": ["SQL", "Excel", "Python", "Statistics", "Power BI", "Data Cleaning"],
+      "certifications": ["SQL", "Excel", "Power BI", "Data Analysis"],
+      "keywords": ["SQL", "data cleaning", "dashboard", "analytics", "Python"]
+    }
+  }
+}

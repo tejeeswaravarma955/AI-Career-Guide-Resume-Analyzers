@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Career Guide{% endblock %}
+
+{% block content %}
+<section class="container page-section">
+    <div class="page-header">
+        <span class="badge badge-dark">AI Career Guide</span>
+        <h1>Create Your Career Roadmap</h1>
+    </div>
+
+    <form method="post" action="{{ url_for('career_generate') }}" class="form-card">
+        <div class="two-col">
+            <div class="field">
+                <label>Name</label>
+                <input type="text" name="name" placeholder="Tejeshwar" required>
+            </div>
+            <div class="field">
+                <label>Target Career</label>
+                <input type="text" name="target_career" value="Software Development" required>
+            </div>
+        </div>
+
+        <div class="two-col">
+            <div class="field">
+                <label>Target Role</label>
+                <select name="target_role">
+                    {% for role in roles %}
+                        <option value="{{ role }}" {% if role == 'Python Developer' %}selected{% endif %}>{{ role }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="field">
+                <label>Current Experience Level</label>
+                <select name="experience_level">
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="two-col">
+            <div class="field">
+                <label>Current Skills</label>
+                <input type="text" name="current_skills" value="Python, HTML, CSS" placeholder="Python, HTML, CSS">
+            </div>
+            <div class="field">
+                <label>Available Time Per Day</label>
+                <input type="text" name="available_time" value="2 hours/day" placeholder="2 hours/day">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary full-width">Generate Career Plan</button>
+    </form>
+</section>
+{% endblock %}

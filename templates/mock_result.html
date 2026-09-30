@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Mock Interview Report{% endblock %}
+
+{% block content %}
+<section class="container page-section">
+    <div class="page-header">
+        <span class="badge badge-dark">MOCK INTERVIEW REPORT</span>
+        <h1>{{ role }}</h1>
+    </div>
+
+    <div class="score-layout">
+        <div class="score-card big-score">
+            <span>Overall Performance</span>
+            <h2>{{ result.overall_performance }}%</h2>
+        </div>
+        <div class="score-card">
+            <p>{{ result.summary }}</p>
+        </div>
+    </div>
+
+    <div class="score-grid compact-grid">
+        {% for label, value in [('Technical Knowledge', result.technical_knowledge), ('Communication', result.communication), ('Confidence', result.confidence), ('Problem Solving', result.problem_solving), ('Role Knowledge', result.role_knowledge)] %}
+        <div class="score-item">
+            <div class="score-row"><span>{{ label }}</span><strong>{{ value }}%</strong></div>
+            <div class="progress-bar"><span style="width: {{ value }}%"></span></div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="split-layout">
+        <div class="result-card">
+            <h3>Strong Areas</h3>
+            <ul class="check-list">
+                {% for item in result.strong_areas %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="result-card">
+            <h3>Weak Areas</h3>
+            <ul class="check-list danger-list">
+                {% for item in result.weak_areas %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="split-layout">
+        <div class="result-card">
+            <h3>Questions Answered Well</h3>
+            <ul class="tag-list">
+                {% for item in result.questions_answered_well %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="result-card">
+            <h3>Questions that Need Improvement</h3>
+            <ul class="tag-list">
+                {% for item in result.questions_need_improvement %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="result-card">
+        <h3>Recommended Preparation Topics</h3>
+        <ul class="tag-list">
+            {% for item in result.recommended_preparation_topics %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

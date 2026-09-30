@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}Resume Analysis{% endblock %}
+
+{% block content %}
+<section class="container page-section">
+    <div class="page-header">
+        <span class="badge badge-dark">Resume Analysis</span>
+        <h1>ATS Compatibility Estimate</h1>
+    </div>
+
+    <div class="score-layout">
+        <div class="score-card big-score">
+            <span>ATS SCORE</span>
+            <h2>{{ result.score }} / 100</h2>
+            <p>Estimated AI-based compatibility score</p>
+        </div>
+        <div class="score-card">
+            <p class="muted">This score is a practice estimate based on the target role and resume content. Different companies use different ATS systems and scoring methods.</p>
+        </div>
+    </div>
+
+    <div class="score-grid">
+        {% set score_max = {'Keyword Match': 25, 'Skills Match': 20, 'Experience': 20, 'Projects': 15, 'Formatting': 10, 'Education': 5} %}
+        {% for label, value in result.category_scores.items() %}
+        <div class="score-item">
+            <div class="score-row">
+                <span>{{ label }}</span>
+                <strong>{{ value }} / {{ score_max[label] }}</strong>
+            </div>
+            <div class="progress-bar">
+                <span style="width: {{ (value / score_max[label]) * 100 }}%"></span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="split-layout">
+        <div class="result-card">
+            <h3>Strengths</h3>
+            <ul class="check-list">
+                {% for item in result.strengths %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="result-card">
+            <h3>Areas to Improve</h3>
+            <ul class="check-list danger-list">
+                {% for item in result.weaknesses %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="split-layout">
+        <div class="result-card">
+            <h3>Skills to Add</h3>
+            <ul class="tag-list">
+                {% for item in result.recommended_skills %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="result-card">
+            <h3>Certifications to Consider</h3>
+            <ul class="tag-list">
+                {% for item in result.certifications_to_consider %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="result-card">
+        <h3>Keywords to Add</h3>
+        <ul class="tag-list">
+            {% for item in result.keywords_to_add %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="result-card">
+        <h3>Resume Improvement Suggestions</h3>
+        <ol class="number-list">
+            {% for item in result.resume_changes %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+
+    <div class="result-card">
+        <h3>Job Portal Recommendations</h3>
+        {% for portal in result.job_portals %}
+        <div class="portal-item">
+            <h4>{{ portal.name }}</h4>
+            <p><strong>Why it is useful:</strong> {{ portal.why }}</p>
+            <p><strong>Target role relevance:</strong> {{ portal.relevance }}</p>
+            {% if portal.url %}<a href="{{ portal.url }}" target="_blank" rel="noreferrer">Official link</a>{% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

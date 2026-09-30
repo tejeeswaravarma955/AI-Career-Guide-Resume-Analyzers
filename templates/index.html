@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-inner">
+        <div class="hero-copy">
+            <span class="badge">Career Support Platform</span>
+            <h1>AI Career Guide & Resume Analyzer</h1>
+            <p>Build your career. Improve your resume. Practice interviews. Analyze your projects.</p>
+            <div class="hero-actions">
+                <a href="{{ url_for('career_guide') }}" class="btn btn-primary">Create Career Plan</a>
+                <a href="{{ url_for('resume_analyzer') }}" class="btn btn-secondary">Analyze Resume</a>
+            </div>
+        </div>
+        <div class="hero-panel">
+            <div class="stat-card">
+                <span>Career Roadmap</span>
+                <strong>30-Day Plan</strong>
+            </div>
+            <div class="stat-card">
+                <span>Resume Fit</span>
+                <strong>ATS Estimate</strong>
+            </div>
+            <div class="stat-card">
+                <span>Interview Prep</span>
+                <strong>Practice Ready</strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container cards-grid">
+    <div class="feature-card">
+        <h3>Career Planning</h3>
+        <p>Generate a personalized 30-day roadmap based on your target role and available time.</p>
+        <a href="{{ url_for('career_guide') }}">Explore</a>
+    </div>
+    <div class="feature-card">
+        <h3>Resume Analyzer</h3>
+        <p>Upload a PDF or DOCX resume and compare it against your target job role.</p>
+        <a href="{{ url_for('resume_analyzer') }}">Analyze</a>
+    </div>
+    <div class="feature-card">
+        <h3>Interview Practice</h3>
+        <p>Answer role-based interview questions and receive practical performance feedback.</p>
+        <a href="{{ url_for('interview_page') }}">Practice</a>
+    </div>
+    <div class="feature-card">
+        <h3>AI Mock Interview</h3>
+        <p>Simulate a realistic interview flow with gradual difficulty and follow-up questions.</p>
+        <a href="{{ url_for('mock_page') }}">Start</a>
+    </div>
+    <div class="feature-card">
+        <h3>Project Analyzer</h3>
+        <p>Review project ideas for clarity, feasibility, scalability, and complexity.</p>
+        <a href="{{ url_for('project_analyzer') }}">Check</a>
+    </div>
+</section>
+{% endblock %}

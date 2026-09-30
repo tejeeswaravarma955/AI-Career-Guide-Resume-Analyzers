@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Career Roadmap{% endblock %}
+
+{% block content %}
+<section class="container page-section">
+    <div class="page-header">
+        <span class="badge badge-dark">30-Day Roadmap</span>
+        <h1>{{ result.name }}'s Career Plan</h1>
+        <p>{{ result.target_role }} | {{ result.available_time }} | {{ result.experience_level }}</p>
+    </div>
+
+    <div class="result-card">
+        <h3>Personalized Time Plan</h3>
+        <p>{{ result.time_plan.summary }}</p>
+        <ul class="check-list">
+            {% for item in result.time_plan.focus %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="day-grid">
+        {% for day in result.plan %}
+        <article class="day-card">
+            <div class="day-label">DAY {{ '%02d' % day.day }}</div>
+            <h3>{{ day.topic }}</h3>
+            <div class="section-block">
+                <strong>Learn</strong>
+                <ul>
+                    {% for item in day.learn %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="section-block">
+                <strong>Why it matters</strong>
+                <p>{{ day.why_it_matters }}</p>
+            </div>
+            <div class="section-block">
+                <strong>Practical task</strong>
+                <p>{{ day.task }}</p>
+            </div>
+            <div class="section-block">
+                <strong>Exercise</strong>
+                <p>{{ day.exercise }}</p>
+            </div>
+            <div class="meta-line">
+                <span>Time: {{ day.estimated_time }}</span>
+            </div>
+            <div class="resource-list">
+                {% for resource in day.resources %}
+                <div class="mini-resource">
+                    <strong>{{ resource.name }}</strong>
+                    <p>{{ resource.description }}</p>
+                    <small>{{ resource.platform }}</small>
+                    {% if resource.url %}<a href="{{ resource.url }}" target="_blank" rel="noreferrer">Visit</a>{% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    <div class="result-card">
+        <h3>Learning Resources</h3>
+        {% for resource in result.resources %}
+        <div class="resource-block">
+            <h4>{{ resource.name }}</h4>
+            <p>{{ resource.description }}</p>
+            <small>{{ resource.platform }}</small>
+            {% if resource.url %}
+                <br><a href="{{ resource.url }}" target="_blank" rel="noreferrer">Open resource</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

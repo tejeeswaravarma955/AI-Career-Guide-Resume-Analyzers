@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Resume Analyzer{% endblock %}
+
+{% block content %}
+<section class="container page-section">
+    <div class="page-header">
+        <span class="badge badge-dark">Resume Analyzer</span>
+        <h1>Upload and Review Your Resume</h1>
+    </div>
+
+    <form method="post" action="{{ url_for('resume_analyze') }}" enctype="multipart/form-data" class="form-card">
+        <div class="field">
+            <label>Upload Resume</label>
+            <input type="file" name="resume" accept=".pdf,.docx" required>
+        </div>
+
+        <div class="field">
+            <label>Target Job Role</label>
+            <select name="target_role">
+                {% for role in roles %}
+                    <option value="{{ role }}" {% if role == 'Python Developer' %}selected{% endif %}>{{ role }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary full-width">Analyze Resume</button>
+    </form>
+</section>
+{% endblock %}

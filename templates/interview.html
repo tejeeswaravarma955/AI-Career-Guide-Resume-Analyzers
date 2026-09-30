@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Interview Practice{% endblock %}
+
+{% block content %}
+<section class="container page-section">
+    <div class="page-header">
+        <span class="badge badge-dark">Interview Questions</span>
+        <h1>{% if role %}{{ role }} Interview{% else %}Practice Interview{% endif %}</h1>
+    </div>
+
+    {% if role %}
+    <form method="post" action="{{ url_for('interview_answer') }}" class="form-card interview-card">
+        <p class="progress-text">Question {{ question_index }} of {{ total_questions }}</p>
+        <h3>{{ question }}</h3>
+        <textarea name="answer" rows="6" placeholder="Write your answer here..." required></textarea>
+        <button type="submit" class="btn btn-primary full-width">Submit Answer</button>
+    </form>
+    {% else %}
+    <form method="post" action="{{ url_for('interview_start') }}" class="form-card">
+        <div class="field">
+            <label>Job Type</label>
+            <select name="job_type">
+                {% for role in roles %}
+                    <option value="{{ role }}" {% if role == 'Python Developer' %}selected{% endif %}>{{ role }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary full-width">Start Interview</button>
+    </form>
+    {% endif %}
+</section>
+{% endblock %}

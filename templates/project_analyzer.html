@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}Project Analyzer{% endblock %}
+
+{% block content %}
+<section class="container page-section">
+    <div class="page-header">
+        <span class="badge badge-dark">Project Analyzer</span>
+        <h1>Evaluate Your Project Idea</h1>
+    </div>
+
+    {% if result %}
+    <div class="result-card">
+        <h3>Project Feasibility Assessment</h3>
+        <div class="project-stats">
+            <span>Technical Feasibility: <strong>{{ result.technical_feasibility }}</strong></span>
+            <span>Problem Clarity: <strong>{{ result.problem_clarity }}</strong></span>
+            <span>Scalability: <strong>{{ result.scalability }}</strong></span>
+            <span>Complexity: <strong>{{ result.complexity }}</strong></span>
+        </div>
+        <p class="lead-paragraph">{{ result.overall_assessment }}</p>
+    </div>
+
+    <div class="split-layout">
+        <div class="result-card">
+            <h3>Problem Statement</h3>
+            <p>{{ result.problem_statement }}</p>
+        </div>
+        <div class="result-card">
+            <h3>Target Users</h3>
+            <p>{{ result.target_users }}</p>
+        </div>
+    </div>
+
+    <div class="result-card">
+        <h3>Proposed Solution</h3>
+        <p>{{ result.proposed_solution }}</p>
+    </div>
+
+    <div class="split-layout">
+        <div class="result-card">
+            <h3>Required Resources</h3>
+            <ul class="check-list">
+                {% for item in result.required_resources %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="result-card">
+            <h3>Potential Challenges</h3>
+            <ul class="check-list danger-list">
+                {% for item in result.potential_challenges %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="split-layout">
+        <div class="result-card">
+            <h3>Uniqueness</h3>
+            <p>{{ result.uniqueness }}</p>
+        </div>
+        <div class="result-card">
+            <h3>Missing Features</h3>
+            <ul class="tag-list">
+                {% for item in result.missing_features %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% else %}
+    <form method="post" action="{{ url_for('project_analyze') }}" class="form-card">
+        <div class="field">
+            <label>Project Title</label>
+            <input type="text" name="project_title" placeholder="AI Career Guide" required>
+        </div>
+        <div class="field">
+            <label>Project Description</label>
+            <textarea name="project_description" rows="5" required></textarea>
+        </div>
+        <div class="field">
+            <label>Technology Used</label>
+            <input type="text" name="technology" value="Python, Flask, HTML, CSS, JavaScript, Gemini API">
+        </div>
+        <div class="field">
+            <label>Target Users</label>
+            <input type="text" name="target_users" value="Students and job seekers">
+        </div>
+        <button type="submit" class="btn btn-primary full-width">Analyze Project</button>
+    </form>
+    {% endif %}
+</section>
+{% endblock %}
